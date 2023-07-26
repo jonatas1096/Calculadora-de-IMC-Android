@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -16,8 +17,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -63,8 +66,22 @@ fun Main() {
                 backgroundColor = Color(0xFF2196F3),
                 contentColor = Color.White,
                 title = { Text(text = "Calculadora de IMC") //aparentemente é melhor usar title
+                },
+
+                actions = {
+                    IconButton(onClick = {
+                        peso = ""
+                        altura = ""
+                        resultadoIMC = ""
+                    })
+                    {
+                        Image(imageVector = ImageVector.vectorResource(id = R.drawable.ic_refresh),
+                            contentDescription = "resetar todos os campos" )
+                    }
+
                 }
             )
+
         }
 
     ) { //aqui começa o conteúdo do scaffold
